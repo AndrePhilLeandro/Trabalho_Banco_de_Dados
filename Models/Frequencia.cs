@@ -8,6 +8,8 @@ namespace BancodeDados_Backend.Models
         public int Id_frequencia { get; set; }
         public int Presenca { get; set; }
         public int Faltas { get; set; }
-        public int Id_matriculaFK{ get; set; }
+        public int Id_matriculaFK { get; set; }
+        public int Id_disciplinaFK { get; set; }
+        public int Id_cursoFK { get; set; }
     }
 }

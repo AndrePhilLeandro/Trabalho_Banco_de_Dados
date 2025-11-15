@@ -9,5 +9,7 @@ namespace BancodeDados_Backend.Models
         public string? Descricao { get; set; }
         public float Nota { get; set; }
         public int Id_turmaFK { get; set; }
+        public int Id_disciplinaFK { get; set; }
+        public int Id_cursoFK { get; set; }
     }
 }

@@ -9,5 +9,7 @@ namespace BancodeDados_Backend.Models
         public float Valor { get; set; }
         public int Id_avaliacaoFK { get; set; }
         public int Id_matriculaFK { get; set; }
+        public int Id_disciplinaFK { get; set; }
+        public int Id_cursoFK { get; set; }
     }
 }

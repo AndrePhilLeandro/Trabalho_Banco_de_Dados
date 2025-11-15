@@ -9,9 +9,9 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<PasswordHasher<string>>();
-builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
 
 var chave = "Projeto_Banco_de_Dados_Puc_Minas_2025";
 var chaveEncriptada = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(chave));
@@ -23,7 +23,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateAudience = true,
         ValidateIssuerSigningKey = true,
         ValidIssuer = "Nome do Projeto",
-        ValidAudience = "Usuario",
+        ValidAudiences = new[] { "Aluno", "Professor" },
         IssuerSigningKey = chaveEncriptada
     };
 });
@@ -35,9 +35,14 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.UseSwaggerUI(Options => Options.SwaggerEndpoint("/openapi/v1.json", "teste"));
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "teste");
+        options.RoutePrefix = string.Empty;
+    });
 }
+
 
 app.UseHttpsRedirection();
 app.MapControllers();
@@ -47,7 +52,7 @@ app.Run();
 
 void AdicionarConexoes(WebApplicationBuilder builder)
 {
-    builder.Services.AddDbContext<AlunoDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+    builder.Services.AddDbContext<UsuarioDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
     builder.Services.AddDbContext<AvaliacaoDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
@@ -60,8 +65,6 @@ void AdicionarConexoes(WebApplicationBuilder builder)
     builder.Services.AddDbContext<MatriculaDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
     builder.Services.AddDbContext<NotaDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
-
-    builder.Services.AddDbContext<ProfessorDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
     builder.Services.AddDbContext<TurmaDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 }

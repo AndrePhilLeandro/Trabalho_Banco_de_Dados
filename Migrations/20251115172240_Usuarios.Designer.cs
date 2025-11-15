@@ -3,16 +3,19 @@ using BancodeDados_Backend.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
 namespace BancoDeDados_BackEnd.Migrations
 {
-    [DbContext(typeof(AlunoDb))]
-    partial class AlunoDbModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UsuarioDb))]
+    [Migration("20251115172240_Usuarios")]
+    partial class Usuarios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,19 +24,22 @@ namespace BancoDeDados_BackEnd.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("BancodeDados_Backend.Models.Aluno", b =>
+            modelBuilder.Entity("BancodeDados_Backend.Models.Usuario", b =>
                 {
-                    b.Property<int>("Id_aluno")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id_aluno"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cpf")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Data_nascimento")
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("EhAluno")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
@@ -47,9 +53,9 @@ namespace BancoDeDados_BackEnd.Migrations
                     b.Property<string>("Telefone")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id_aluno");
+                    b.HasKey("Id");
 
-                    b.ToTable("Alunos");
+                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

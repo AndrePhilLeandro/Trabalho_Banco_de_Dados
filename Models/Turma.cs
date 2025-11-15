@@ -9,6 +9,7 @@ namespace BancodeDados_Backend.Models
         public int Semestre { get; set; }
         public int Ano { get; set; }
         public int Id_disciplinaFK { get; set; }
+        public int Id_cursoFK { get; set; }
         public int Id_professorFK { get; set; }
     }
 }

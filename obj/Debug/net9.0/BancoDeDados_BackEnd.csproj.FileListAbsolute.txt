@@ -129,3 +129,4 @@ C:\Users\Andre Leandro\Desktop\BancoDeDados_BackEnd\bin\Debug\net9.0\Microsoft.I
 C:\Users\Andre Leandro\Desktop\BancoDeDados_BackEnd\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Andre Leandro\Desktop\BancoDeDados_BackEnd\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Andre Leandro\Desktop\BancoDeDados_BackEnd\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Andre Leandro\Desktop\BancoDeDados_BackEnd\obj\Debug\net9.0\BancoDeDados_BackEnd.sourcelink.json
