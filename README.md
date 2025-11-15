@@ -43,3 +43,15 @@ dotnet watch run
 ## Documentação
 Rotas do swagger deve aparecer no terminal: 
 Now listening on: http://localhost:{porta}
+
+
+# Frontend - Guia de Execução
+
+## Requisitos
+- Visual Studio Code (VSCode)
+- Node
+- MySQL
+
+## Rodar o frontend
+npm install --save-dev nodemon
+npx nodemon index.js      
