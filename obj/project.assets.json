@@ -3286,11 +3286,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andre Leandro\\Desktop\\BancoDeDados_BackEnd\\BancoDeDados_BackEnd.csproj",
+      "projectUniqueName": "C:\\Users\\Andre Leandro\\Desktop\\Trabalho_Banco_de_Dados\\BancoDeDados_BackEnd.csproj",
       "projectName": "BancoDeDados_BackEnd",
-      "projectPath": "C:\\Users\\Andre Leandro\\Desktop\\BancoDeDados_BackEnd\\BancoDeDados_BackEnd.csproj",
+      "projectPath": "C:\\Users\\Andre Leandro\\Desktop\\Trabalho_Banco_de_Dados\\BancoDeDados_BackEnd.csproj",
       "packagesPath": "C:\\Users\\Andre Leandro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andre Leandro\\Desktop\\BancoDeDados_BackEnd\\obj\\",
+      "outputPath": "C:\\Users\\Andre Leandro\\Desktop\\Trabalho_Banco_de_Dados\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Andre Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config"
