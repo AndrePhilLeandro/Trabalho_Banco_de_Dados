@@ -13,6 +13,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("corsPolicy", p =>
+        p.AllowAnyOrigin()
+         .AllowAnyMethod()
+         .AllowAnyHeader());
+});
+
+
 
 var chave = "Projeto_Banco_de_Dados_Puc_Minas_2025";
 var chaveEncriptada = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(chave));
@@ -44,7 +53,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-
+app.UseCors("corsPolicy");
 app.UseHttpsRedirection();
 app.MapControllers();
 app.UseCors();

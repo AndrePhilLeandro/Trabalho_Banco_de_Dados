@@ -8,6 +8,7 @@ namespace BancodeDados_Backend.Models
         public int Id_curso { get; set; }
         public string? Nome { get; set; }
         public int Carga_horaria { get; set; }
+        public bool Ativo { get; set; } = true;
     }
     public class CursoPut
     {

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => {
+app.post("http://localhost:5074/api/Usuario/LoginUser", (req, res) => {
     res.send("Servidor Node rodando!");
 });
 

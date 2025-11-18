@@ -42,7 +42,7 @@ namespace BancodeDados_Backend.Controller
             usuario.Cpf = usuario.Cpf.Trim();
             var achaUsuario = usuarioDb.Usuarios.FirstOrDefault(u => u.Cpf == usuario.Cpf);
 
-            if (achaUsuario != null)
+            if (achaUsuario != null && achaUsuario.Email == usuario.Email&&achaUsuario.Cpf==usuario.Cpf)
                 return Conflict("Usuário já cadastrado!");
 
             if (string.IsNullOrWhiteSpace(usuario.Senha) || usuario.Senha.Length < 8)
@@ -53,7 +53,7 @@ namespace BancodeDados_Backend.Controller
             usuarioDb.Usuarios.Add(usuario);
             usuarioDb.SaveChanges();
 
-            return Created("Usuario","Criado com sucesso!");
+            return Created("Usuario", "Criado com sucesso!");
         }
         [AllowAnonymous]
         [HttpPost("LoginUser")]
