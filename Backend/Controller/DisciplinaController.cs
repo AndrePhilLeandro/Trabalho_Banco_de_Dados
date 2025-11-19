@@ -7,7 +7,7 @@ namespace BancodeDados_Backend.Controller
 {
     [ApiController]
     [Route("/api/[Controller]")]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class DisciplinaController : ControllerBase
     {
         private readonly DisciplinaDb disciplinaDb;
@@ -48,7 +48,7 @@ namespace BancodeDados_Backend.Controller
             var achaDisci = disciplinaDb.Disciplinas.FirstOrDefault(disc => disc.Id_disciplina == id);
             if (achaDisci.Id_disciplina != null || achaDisci.Id_disciplina == id)
             {
-                disciplinaDb.Disciplinas.Remove(achaDisci);
+                achaDisci.Ativo = false;
                 disciplinaDb.SaveChanges();
                 return NoContent();
             }
@@ -63,7 +63,7 @@ namespace BancodeDados_Backend.Controller
                 return UnprocessableEntity("Id deve ser maior que Zero!");
             }
             var achaDisci = disciplinaDb.Disciplinas.FirstOrDefault(disc => disc.Id_disciplina == id);
-            if (achaDisci.Id_disciplina != null || achaDisci.Id_disciplina == id)
+            if (achaDisci.Id_disciplina != null || achaDisci.Id_disciplina == id && achaDisci.Ativo == true)
             {
                 achaDisci.Nome = disciplina.Nome;
                 achaDisci.Carga_horaria = disciplina.Carga_horaria;

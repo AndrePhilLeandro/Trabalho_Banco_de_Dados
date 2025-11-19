@@ -1,4 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BancodeDados_Backend.Models
 {
@@ -13,6 +16,7 @@ namespace BancodeDados_Backend.Models
         public string? Email { get; set; }
         public string? Senha { get; set; }
         public bool EhAluno { get; set; }
+        [JsonIgnore]
         public bool Ativo { get; set; } = true;
 
     }
@@ -21,6 +25,8 @@ namespace BancodeDados_Backend.Models
         public string? Email { get; set; }
         public string? Senha { get; set; }
         public bool EhAluno { get; set; }
+        [JsonIgnore]
+        public bool Ativo { get; set; } = true;
     }
     public class UsuarioPut
     {
