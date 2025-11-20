@@ -12,9 +12,6 @@ document.getElementById("formCompleto").addEventListener("submit", async functio
         verifica = false;
     }
 
-    console.log(email,senha,verifica);
-
-    // Validação simples
     if (!email || !senha) {
         alert("Preencha email e senha!");
         return;
@@ -32,22 +29,20 @@ document.getElementById("formCompleto").addEventListener("submit", async functio
                 ehAluno: verifica
             })
         });
-
-        // Se a API retornou erro (401, 422, 404)
         if (!response.ok) {
             const erro = await response.text();
             alert("Erro: " + erro);
             return;
         }
+        const data = await response.json();
 
-        const token = await response.text(); // sua API retorna uma STRING
-
-
-        // Salvar token
-        sessionStorage.setItem("Logado", token);
-
+        if (data.ativo !== true) {
+            alert("Seu usuário está desativado! Não é possível fazer login.");
+            return;
+        }
+        sessionStorage.setItem("Logado", JSON.stringify(data));
         alert("Login feito com sucesso!");
-        window.location.href = "https://www.youtube.com";
+        window.location.href = "/Frontend/scr/html/PaginaLogada.html";
 
     }
     catch (err) {

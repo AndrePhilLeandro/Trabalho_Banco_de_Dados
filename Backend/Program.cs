@@ -12,7 +12,6 @@ builder.Services.AddScoped<PasswordHasher<string>>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCors();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("corsPolicy", p =>
@@ -53,11 +52,12 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseCors("corsPolicy");
-app.UseHttpsRedirection();
-app.MapControllers();
-app.UseCors();
 
+app.UseHttpsRedirection();
+app.UseCors("corsPolicy");
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();
 

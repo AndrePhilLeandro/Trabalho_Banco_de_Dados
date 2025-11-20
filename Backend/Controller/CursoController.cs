@@ -46,6 +46,7 @@ namespace BancodeDados_Backend.Controller
             {
                 Achacurso.Nome = curso.Nome.ToUpper();
                 Achacurso.Carga_horaria = curso.Carga_horaria;
+                Achacurso.Ativo = curso.Ativo;
                 cursoDb.SaveChanges();
                 return Content("Informaçoes Alteradas com sucesso!");
             }
@@ -66,7 +67,7 @@ namespace BancodeDados_Backend.Controller
             {
                 return NotFound("Curso não encontrado!");
             }
-            cursoDb.Cursos.Remove(Achacurso);
+            Achacurso.Ativo = false;
             cursoDb.SaveChanges();
             return NoContent();
         }

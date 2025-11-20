@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using BancodeDados_Backend.Database;
 using BancodeDados_Backend.Models;
 using Microsoft.AspNetCore.Mvc;

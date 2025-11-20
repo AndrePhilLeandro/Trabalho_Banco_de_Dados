@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andre Leandro\\Desktop\\Trabalho_Banco_de_Dados\\Backend\\BancoDeDados_BackEnd.csproj": {}
+    "C:\\Users\\adlr\\Downloads\\Trabalho_Banco_de_Dados-Andre\\Trabalho_Banco_de_Dados-Andre\\Backend\\BancoDeDados_BackEnd.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andre Leandro\\Desktop\\Trabalho_Banco_de_Dados\\Backend\\BancoDeDados_BackEnd.csproj": {
+    "C:\\Users\\adlr\\Downloads\\Trabalho_Banco_de_Dados-Andre\\Trabalho_Banco_de_Dados-Andre\\Backend\\BancoDeDados_BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andre Leandro\\Desktop\\Trabalho_Banco_de_Dados\\Backend\\BancoDeDados_BackEnd.csproj",
+        "projectUniqueName": "C:\\Users\\adlr\\Downloads\\Trabalho_Banco_de_Dados-Andre\\Trabalho_Banco_de_Dados-Andre\\Backend\\BancoDeDados_BackEnd.csproj",
         "projectName": "BancoDeDados_BackEnd",
-        "projectPath": "C:\\Users\\Andre Leandro\\Desktop\\Trabalho_Banco_de_Dados\\Backend\\BancoDeDados_BackEnd.csproj",
-        "packagesPath": "C:\\Users\\Andre Leandro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andre Leandro\\Desktop\\Trabalho_Banco_de_Dados\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\adlr\\Downloads\\Trabalho_Banco_de_Dados-Andre\\Trabalho_Banco_de_Dados-Andre\\Backend\\BancoDeDados_BackEnd.csproj",
+        "packagesPath": "C:\\Users\\adlr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\adlr\\Downloads\\Trabalho_Banco_de_Dados-Andre\\Trabalho_Banco_de_Dados-Andre\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Andre Leandro\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\adlr\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"

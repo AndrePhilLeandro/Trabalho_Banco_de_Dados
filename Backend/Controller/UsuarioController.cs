@@ -6,7 +6,6 @@ using BancodeDados_Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Abstractions;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BancodeDados_Backend.Controller
@@ -23,6 +22,7 @@ namespace BancodeDados_Backend.Controller
             this.usuarioDb = usuarioDb;
             this.hasher = hasher;
         }
+
         [AllowAnonymous]
         [HttpPost("CadastroUser")]
         public IActionResult CadastroUser([FromBody] Usuario usuario)
@@ -42,7 +42,7 @@ namespace BancodeDados_Backend.Controller
             usuario.Cpf = usuario.Cpf.Trim();
             var achaUsuario = usuarioDb.Usuarios.FirstOrDefault(u => u.Cpf == usuario.Cpf);
 
-            if (achaUsuario != null && achaUsuario.Email == usuario.Email&&achaUsuario.Cpf==usuario.Cpf)
+            if (achaUsuario != null && achaUsuario.Email == usuario.Email && achaUsuario.Cpf == usuario.Cpf)
                 return Conflict("Usuário já cadastrado!");
 
             if (string.IsNullOrWhiteSpace(usuario.Senha) || usuario.Senha.Length < 8)
@@ -68,10 +68,14 @@ namespace BancodeDados_Backend.Controller
             {
                 return Unauthorized("Usuário não encontrado");
             }
+            if (VerificaLogin.Ativo == false)
+            {
+                return Unauthorized("Usuario desativado!");
+            }
 
             var Verifica = VerificaSenha(VerificaLogin.Senha, usuario.Senha);
 
-            if (VerificaLogin.Email == usuario.Email && Verifica == true)
+            if (VerificaLogin.Email == usuario.Email && Verifica == true && VerificaLogin.EhAluno == usuario.EhAluno)
             {
                 var chave = "Projeto_Banco_de_Dados_Puc_Minas_2025";
                 var chaveEncriptada = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(chave));
@@ -104,12 +108,18 @@ namespace BancodeDados_Backend.Controller
             {
                 return Unauthorized("Email ou senha inválidos");
             }
-            return Ok(tokenGerado);
+            return Ok(new
+            {
+                tokenGerado,
+                id = VerificaLogin.Id,
+                ativo=VerificaLogin.Ativo
+            }
+            );
         }
         [HttpPut("{id}")]
-        [Authorize]
         public IActionResult Edita_Usuario(int id, UsuarioPut usuario)
         {
+            Console.WriteLine($"{usuario.Email}\n{usuario.Nome}\n{usuario.Senha}\n{usuario.Telefone}\n {id}");
             if (id <= 0)
             {
                 return BadRequest("Id Invalido!");
@@ -131,16 +141,19 @@ namespace BancodeDados_Backend.Controller
             {
                 return BadRequest("Telefone Invalido!");
             }
-            var HashPassword = HashSenha(usuario.Senha);
-            VerificaLogin.Nome = usuario.Nome.ToUpper();
-            VerificaLogin.Email = usuario.Email;
-            VerificaLogin.Senha = HashPassword;
-            VerificaLogin.Telefone = usuario.Telefone;
-            usuarioDb.SaveChanges();
+            if (VerificaLogin.Ativo == true)
+            {
+                var HashPassword = HashSenha(usuario.Senha);
+                VerificaLogin.Nome = usuario.Nome.ToUpper();
+                VerificaLogin.Email = usuario.Email;
+                VerificaLogin.Senha = HashPassword;
+                VerificaLogin.Telefone = usuario.Telefone;
+                usuarioDb.SaveChanges();
+            }
             return NoContent();
         }
         [HttpDelete("{id}")]
-        private IActionResult Deleta_Usuario(int id)
+        public IActionResult Deleta_Usuario(int id)
         {
             if (id <= 0)
             {
@@ -155,9 +168,40 @@ namespace BancodeDados_Backend.Controller
             {
                 return NotFound();
             }
-            usuarioDb.Usuarios.Remove(VerificaLogin);
-            usuarioDb.SaveChanges();
+            if (VerificaLogin.Ativo == true)
+            {
+                VerificaLogin.Ativo = false;
+                usuarioDb.SaveChanges();
+            }
             return NoContent();
+        }
+        [HttpGet("MostraAtivos")]
+        private IActionResult MostraTodos()
+        {
+            var verifica = usuarioDb.Usuarios.ToArray();
+            List<Usuario> userAtivo = new List<Usuario>();
+            foreach (var tmp in verifica)
+            {
+                if (tmp.Ativo == true)
+                {
+                    userAtivo.Add(tmp);
+                }
+            }
+            return Ok(userAtivo);
+        }
+        [HttpGet("MostraInativos")]
+        private IActionResult MostraInativos()
+        {
+            var verifica = usuarioDb.Usuarios.ToArray();
+            List<Usuario> userInativo = new List<Usuario>();
+            foreach (var tmp in verifica)
+            {
+                if (tmp.Ativo == false)
+                {
+                    userInativo.Add(tmp);
+                }
+            }
+            return Ok(userInativo);
         }
 
         private bool VerificaSenha(string hashBanco, string hashLogin)
