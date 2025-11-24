@@ -4,36 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Puc Check</title>
     <link rel="stylesheet" href="/Frontend/scr/css/inicio.css">
 </head>
 
-<body>
-    <form id="formCompleto">
-        <label for="Email">Email</label>
-        <input id="Email" type="text">
-        <br>
+<body class="body">
+    <h1 class="Titulo"> Puc Check ✅</h1>
+    <div class="box">
 
-        <label for="Senha">Senha</label>
-        <input id="Senha" type="password">
-        <br>
+        <form id="formCompleto">
+            <label for="Email">Email</label>
+            <input id="Email" type="text">
 
-        <label>
-            <input type="radio" name="tipo" value="aluno">
-            Aluno
-        </label>
-        <br>
+            <label for="Senha">Senha</label>
+            <input id="Senha" type="password">
 
-        <label>
-            <input type="radio" name="tipo" value="professor">
-            Professor
-        </label>
-        <br>
+            <label>
+                <input type="radio" name="tipo" value="Aluno">
+                Aluno
+            </label>
 
-        <button type="submit">Login</button>
-    </form>
+            <label>
+                <input type="radio" name="tipo" value="Professor">
+                Professor
+            </label>
+            <label>
+                <input type="radio" name="tipo" value="Admin">
+                Admin
+            </label>
 
-    <a href="/Frontend/scr/html/Cadastro.html"><button>Cadastro</button></a>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
 
 </body>
 <script src="/Frontend/scr/js/Login.js"></script>

@@ -1,0 +1,117 @@
+.bd {
+    background-color: aquamarine;
+    padding-right: 2%;
+    padding-left: 2%;
+}
+
+.header {
+    width: 100%;
+    height: 70px;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    height: 55px;
+}
+
+.user-area {
+    position: relative;
+}
+
+.user-btn {
+    background-color: #004f4f;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.user-btn:hover {
+    background-color: #006a6a;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+}
+
+.dropdown a {
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.dropdown a:hover {
+    background-color: #eee;
+}
+
+
+
+
+
+
+.boxEdita {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    gap: 20px;
+}
+
+#formEdita {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #65e0e9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#formEdita input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #009ea6;
+    outline: none;
+}
+
+#formEdita input:focus {
+    border-color: #006f75;
+}
+
+#formEdita button,
+.deletarBtn {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #007c80;
+    color: white;
+}
+
+#formEdita button:hover {
+    background-color: #006468;
+}
+
+.deletarBtn {
+    background-color: #ff4f4f;
+    color: white;
+}
+
+.deletarBtn:hover {
+    background-color: #cc0000;
+}

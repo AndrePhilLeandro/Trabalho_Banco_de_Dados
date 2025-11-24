@@ -5,48 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/Frontend/scr/css/inicio.css">
+    <link rel="stylesheet" href="/Frontend/scr/css/Cadastro.css">
 </head>
 
-<body>
-    <form id="formCompleto">
-        <label for="nome">Nome</label>
-        <input id="Nome" type="text">
-        <br>
-        <label for="CPF">CPF</label>
-        <input id="Cpf" type="text">
-        <br>
-        <label for="Data Nascimento">Data Nascimento</label>
-        <input id="Data_nascimento" type="text">
-        <br>
-        <label for="Telefone">Telefone</label>
-        <input id="Telefone" type="text">
-        <br>
-        <label for="Email">Email</label>
-        <input id="Email" type="text">
-        <br>
-        <label for="Senha">Senha</label>
-        <input id="Senha" type="password">
-        <br>
-        <label for="Senha">Confirma Senha</label>
-        <input id="ConfirmaSenha" type="password">
-        <br>
-        <label>
-            <input type="radio" name="tipo" value="aluno">
-            Aluno
-        </label>
-        <br>
+<body class="bd">
+    <header class="header">
+        <img src="" class="logo" alt="Logo">
 
-        <label>
-            <input type="radio" name="tipo" value="professor">
-            Professor
-        </label>
-        <br>
+        <div class="user-area">
+            <button id="userBtn" class="user-btn"></button>
 
-        <button type="submit">Cadastro</button>
-    </form>
-    <a href="/Frontend/scr/html/inicio.html"><button>Inicio</button></a>
+            <div id="dropdown" class="dropdown">
+                <a href="/Frontend/scr/html/Admin.html">Início</a>
+                <a href="/Frontend/scr/html/editar.html">Editar Usuário</a>
+                <a id="btnSair" href="/Frontend/scr/html/inicio.html">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="boxCadastro">
+        <form id="formCadastro">
+
+            <label for="Nome">Nome</label>
+            <input id="Nome" type="text">
+
+            <label for="Cpf">CPF</label>
+            <input id="Cpf" type="text">
+
+            <label for="Data_nascimento">Data de Nascimento</label>
+            <input id="Data_nascimento" type="text">
+
+            <label for="Telefone">Telefone</label>
+            <input id="Telefone" type="text">
+
+            <label for="Email">Email</label>
+            <input id="Email" type="text">
+
+            <label for="Senha">Senha</label>
+            <input id="Senha" type="password">
+
+            <label for="ConfirmaSenha">Confirmar Senha</label>
+            <input id="ConfirmaSenha" type="password">
+
+            <label class="radio-label">
+                <input type="radio" name="tipo" value="Aluno">
+                Aluno
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="tipo" value="Professor">
+                Professor
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="tipo" value="Admin">
+                Admin
+            </label>
+
+            <button type="submit" class="btn salvar">Cadastrar</button>
+        </form>
+    </div>
+
+
 </body>
-<script src="/Frontend/scr/js/Cadastrp.js"></script>
+<script src="/Frontend/scr/js/Cadastro.js"></script>
 
 </html>

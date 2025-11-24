@@ -15,16 +15,14 @@ namespace BancodeDados_Backend.Models
         public string? Telefone { get; set; }
         public string? Email { get; set; }
         public string? Senha { get; set; }
-        public bool EhAluno { get; set; }
-        [JsonIgnore]
+        public int Tipo { get; set; }
         public bool Ativo { get; set; } = true;
-
     }
     public class UsuarioLogin
     {
         public string? Email { get; set; }
         public string? Senha { get; set; }
-        public bool EhAluno { get; set; }
+        public int Tipo { get; set; }
         [JsonIgnore]
         public bool Ativo { get; set; } = true;
     }
@@ -34,5 +32,7 @@ namespace BancodeDados_Backend.Models
         public string? Email { get; set; }
         public string? Senha { get; set; }
         public string? Telefone { get; set; }
+        [JsonIgnore]
+        public bool Ativo { get; set; } = true;
     }
 }

@@ -4,18 +4,22 @@ document.getElementById("formCompleto").addEventListener("submit", async functio
     const email = document.getElementById("Email").value;
     const senha = document.getElementById("Senha").value;
     const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
-    let verifica = true;
-    if (tipo == "aluno") {
-        verifica = true;
+    var verifica;
+    if (tipo == "Admin") {
+        verifica = 0;
+    }
+    else if (tipo == "Aluno") {
+        verifica = 1;
     }
     else {
-        verifica = false;
+        verifica = 2;
     }
-
     if (!email || !senha) {
         alert("Preencha email e senha!");
         return;
     }
+
+    //return console.log(tipo);
 
     try {
         const response = await fetch("http://localhost:5074/api/Usuario/LoginUser", {
@@ -26,7 +30,7 @@ document.getElementById("formCompleto").addEventListener("submit", async functio
             body: JSON.stringify({
                 email: email,
                 senha: senha,
-                ehAluno: verifica
+                Tipo: verifica
             })
         });
         if (!response.ok) {
@@ -36,14 +40,21 @@ document.getElementById("formCompleto").addEventListener("submit", async functio
         }
         const data = await response.json();
 
-        if (data.ativo !== true) {
+        if (data.login.ativo == false) {
             alert("Seu usuário está desativado! Não é possível fazer login.");
             return;
         }
         sessionStorage.setItem("Logado", JSON.stringify(data));
         alert("Login feito com sucesso!");
-        window.location.href = "/Frontend/scr/html/PaginaLogada.html";
-
+        if (data.login.tipo == 1) {
+            window.location.href = "/Frontend/scr/html/Aluno.html";
+        }
+        else if (data.login.tipo == 2) {
+            window.location.href = "/Frontend/scr/html/Professor.html";
+        }
+        else{
+            window.location.href = "/Frontend/scr/html/Admin.html";
+        }
     }
     catch (err) {
         console.error("Erro no fetch:", err);

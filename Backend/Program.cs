@@ -1,5 +1,6 @@
 using System.Text;
 using BancodeDados_Backend.Database;
+using BancodeDados_Backend.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,32 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 AdicionarConexoes(builder);
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<UsuarioDb>();
+
+    // Aplica as migrations automaticamente
+    db.Database.Migrate();
+
+    // Se não existir nenhum usuário, cria o primeiro
+    if (!db.Usuarios.Any())
+    {
+        db.Usuarios.Add(new Usuario
+        {
+            Nome = "Admin",
+            Email = "Administrador@master.com",
+            Senha = "123456",
+            Tipo = 0,
+            Cpf = "00000000000",
+            Data_nascimento = "01/01/2000",
+            Telefone = "000000000",
+            Ativo = true
+        });
+
+        db.SaveChanges();
+    }
+}
+
 
 
 if (app.Environment.IsDevelopment())
@@ -70,10 +97,6 @@ void AdicionarConexoes(WebApplicationBuilder builder)
     builder.Services.AddDbContext<CursoDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
     builder.Services.AddDbContext<DisciplinaDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
-
-    builder.Services.AddDbContext<FrequenciaDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
-
-    builder.Services.AddDbContext<MatriculaDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
     builder.Services.AddDbContext<NotaDb>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 

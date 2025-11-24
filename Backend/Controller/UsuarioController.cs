@@ -59,7 +59,14 @@ namespace BancodeDados_Backend.Controller
         [HttpPost("LoginUser")]
         public IActionResult LoginUser(UsuarioLogin usuario)
         {
-            string audiencia;
+            if (usuario.Email == "Administrador@master.com" && usuario.Senha == "123456" && usuario.Tipo == 0)
+            {
+                return Ok(new
+                {
+                    login = usuario
+                });
+            }
+            string audiencia = "Admin";
             string? tokenGerado = null;
 
             var VerificaLogin = usuarioDb.Usuarios.FirstOrDefault(al => al.Email == usuario.Email);
@@ -75,7 +82,7 @@ namespace BancodeDados_Backend.Controller
 
             var Verifica = VerificaSenha(VerificaLogin.Senha, usuario.Senha);
 
-            if (VerificaLogin.Email == usuario.Email && Verifica == true && VerificaLogin.EhAluno == usuario.EhAluno)
+            if (VerificaLogin.Email == usuario.Email && Verifica == true && VerificaLogin.Tipo == usuario.Tipo)
             {
                 var chave = "Projeto_Banco_de_Dados_Puc_Minas_2025";
                 var chaveEncriptada = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(chave));
@@ -85,12 +92,12 @@ namespace BancodeDados_Backend.Controller
                 claims.Add(new Claim("email", VerificaLogin.Email));
                 claims.Add(new Claim("Id", VerificaLogin.Id.ToString()));
 
-                if (VerificaLogin.EhAluno == true)
+                if (VerificaLogin.Tipo == 1)
                 {
                     claims.Add(new Claim(ClaimTypes.Role, "Aluno"));
                     audiencia = "Aluno";
                 }
-                else
+                else if (VerificaLogin.Tipo == 2)
                 {
                     claims.Add(new Claim(ClaimTypes.Role, "Professor"));
                     audiencia = "Professor";
@@ -111,8 +118,7 @@ namespace BancodeDados_Backend.Controller
             return Ok(new
             {
                 tokenGerado,
-                id = VerificaLogin.Id,
-                ativo=VerificaLogin.Ativo
+                login = VerificaLogin
             }
             );
         }
@@ -175,33 +181,55 @@ namespace BancodeDados_Backend.Controller
             }
             return NoContent();
         }
-        [HttpGet("MostraAtivos")]
-        private IActionResult MostraTodos()
+        [HttpPatch("{id}")]
+        public IActionResult Ativa(int id)
         {
-            var verifica = usuarioDb.Usuarios.ToArray();
-            List<Usuario> userAtivo = new List<Usuario>();
-            foreach (var tmp in verifica)
+            if (id <= 0)
             {
-                if (tmp.Ativo == true)
-                {
-                    userAtivo.Add(tmp);
-                }
+                return BadRequest("Id Invalido!");
             }
-            return Ok(userAtivo);
+            var VerificaLogin = usuarioDb.Usuarios.FirstOrDefault(al => al.Id == id);
+            if (VerificaLogin == null)
+            {
+                return NotFound();
+            }
+            if (VerificaLogin.Id != id)
+            {
+                return NotFound();
+            }
+            if (VerificaLogin.Ativo == false)
+            {
+                VerificaLogin.Ativo = true;
+                usuarioDb.SaveChanges();
+            }
+            return NoContent();
         }
-        [HttpGet("MostraInativos")]
-        private IActionResult MostraInativos()
+        [HttpGet("MostrarTodos")]
+        public IActionResult MostraTodos()
         {
+
             var verifica = usuarioDb.Usuarios.ToArray();
-            List<Usuario> userInativo = new List<Usuario>();
-            foreach (var tmp in verifica)
+            List<Usuario> user = new List<Usuario>(verifica);
+            return Ok(user);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult MostraUser(int id)
+        {
+            if (id <= 0)
             {
-                if (tmp.Ativo == false)
-                {
-                    userInativo.Add(tmp);
-                }
+                return BadRequest("Id Invalido!");
             }
-            return Ok(userInativo);
+            var VerificaLogin = usuarioDb.Usuarios.FirstOrDefault(al => al.Id == id);
+            if (VerificaLogin == null)
+            {
+                return NotFound();
+            }
+            if (VerificaLogin.Id != id)
+            {
+                return NotFound();
+            }
+            return Ok(VerificaLogin);
         }
 
         private bool VerificaSenha(string hashBanco, string hashLogin)

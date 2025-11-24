@@ -4,29 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Frontend/scr/css/Editar.css">
     <title>Document</title>
 </head>
 
-<body>
-    <form id="formCompleto">
-        <label for="nome">Nome</label>
-        <input id="Nome" type="text">
-        <br>
-        <label for="Telefone">Telefone</label>
-        <input id="Telefone" type="text">
-        <br>
-        <label for="Email">Email</label>
-        <input id="Email" type="text">
-        <br>
-        <label for="Senha">Senha</label>
-        <input id="Senha" type="password">
-        <br>
-        <label for="Senha">Confirma Senha</label>
-        <input id="ConfirmaSenha" type="password">
-        <br>
-        <button type="submit">Salvar</button>
-    </form>
-<script src="/Frontend/scr/js/Editar.js"></script>
+<body class="bd">
+    <header class="header">
+        <img src="" class="logo" alt="Logo">
+
+        <div class="user-area">
+            <button id="userBtn" class="user-btn"></button>
+
+            <div id="dropdown" class="dropdown">
+                <a href="/Frontend/scr/html/Aluno.html">Início</a>
+                <a href="/Frontend/scr/html/editar.html">Editar Usuário</a>
+                <a id="btnSair" href="/Frontend/scr/html/inicio.html">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="boxEdita">
+        <form id="formEdita">
+            <label for="Nome">Nome</label>
+            <input id="Nome" type="text">
+
+            <label for="Telefone">Telefone</label>
+            <input id="Telefone" type="text">
+
+            <label for="Email">Email</label>
+            <input id="Email" type="text">
+
+            <label for="Senha">Senha</label>
+            <input id="Senha" type="password">
+
+            <label for="ConfirmaSenha">Confirmar Senha</label>
+            <input id="ConfirmaSenha" type="password">
+
+            <button type="submit" class="btn salvar">Salvar</button>
+        </form>
+
+        <button class="deletarBtn" onclick="deleta()">Deletar</button>
+    </div>
+
+    <script src="/Frontend/scr/js/Editar.js"></script>
 </body>
 
 
