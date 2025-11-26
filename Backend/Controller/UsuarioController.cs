@@ -63,7 +63,8 @@ namespace BancodeDados_Backend.Controller
             {
                 return Ok(new
                 {
-                    login = usuario
+                    login = usuario,
+                    nome = "Admin"
                 });
             }
             string audiencia = "Admin";
@@ -208,9 +209,8 @@ namespace BancodeDados_Backend.Controller
         public IActionResult MostraTodos()
         {
 
-            var verifica = usuarioDb.Usuarios.ToArray();
-            List<Usuario> user = new List<Usuario>(verifica);
-            return Ok(user);
+            var verifica = usuarioDb.Usuarios.ToList();
+            return Ok(verifica);
         }
 
         [HttpGet("{id}")]

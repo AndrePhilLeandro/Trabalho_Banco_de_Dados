@@ -19,7 +19,7 @@ namespace BancodeDados_Backend.Controller
             this.usuarioDb = usuarioDb;
             this.disciplinaDb = disciplinaDb;
         }
-        [HttpPost("Turma")]
+        [HttpPost("CadastrarTurma")]
         public IActionResult Turma([FromBody] Turma turma)
         {
             if (turma.Id_professorFK <= 0)
@@ -44,25 +44,22 @@ namespace BancodeDados_Backend.Controller
             }
             try
             {
-                /* var VerificaUsuario = usuarioDb.Usuarios.FirstOrDefault(user => user.Id == turma.Id_professorFK);
-                var VerificaCurso = cursoDb.Cursos.FirstOrDefault(Curso => Curso.Id_curso == turma.Id_cursoFK);
-                var Verificadisciplina = disciplinaDb.Disciplinas.FirstOrDefault(disc => disc.Id_disciplina == turma.Id_cursoFK);
+                var verificaUsuario = usuarioDb.Usuarios.FirstOrDefault(u => u.Id == turma.Id_professorFK);
+                var verificaCurso = cursoDb.Cursos.FirstOrDefault(c => c.Id_curso == turma.Id_cursoFK);
+                var verificaDisciplina = disciplinaDb.Disciplinas.FirstOrDefault(d => d.Id_disciplina == turma.Id_disciplinaFK);
 
-                if (VerificaUsuario != null && VerificaCurso != null && Verificadisciplina != null)
-                {
-                    turmaDb.Turmas.Add(turma);
-                    turmaDb.SaveChanges();
-                    return Created();
-                } */
+                if (verificaUsuario == null || verificaCurso == null || verificaDisciplina == null)
+                    return BadRequest("Professor, curso ou disciplina não encontrados!");
+
                 turmaDb.Turmas.Add(turma);
-               // turmaDb.SaveChanges();
-                return Ok(turma);
+                turmaDb.SaveChanges();
+
+                return Created("", turma);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            return BadRequest();
         }
     }
 }

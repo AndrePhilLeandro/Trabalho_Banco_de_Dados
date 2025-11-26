@@ -25,33 +25,24 @@ dotnet build
 ## Rodar migrations para o banco de dados
 <!--
 dotnet ef migrations Add Avaliacao --context AvaliacaoDb
-
-dotnet ef migrations Add Curso --context CursoDb
-
-dotnet ef migrations Add Disciplina --context DisciplinaDb
-
 dotnet ef migrations Add Frequencia --context FrequenciaDb
-
 dotnet ef migrations Add Nota --context NotaDb
-
-dotnet ef migrations Add Turma --context TurmaDb
 -->
+dotnet ef migrations Add Curso --context CursoDb
+dotnet ef migrations Add Disciplina --context DisciplinaDb
+dotnet ef migrations Add Turma --context TurmaDb
 dotnet ef migrations Add Usuarios --context UsuarioDb
+
 
 ## Atualizar o banco de dados
 <!--
 dotnet ef database update --context AvaliacaoDb
-
-dotnet ef database update --context CursoDb
-
-dotnet ef database update --context DisciplinaDb
-
 dotnet ef database update --context FrequenciaDb
-
 dotnet ef database update --context NotaDb
-
-dotnet ef database update --context TurmaDb
 -->
+dotnet ef database update --context CursoDb
+dotnet ef database update --context DisciplinaDb
+dotnet ef database update --context TurmaDb
 dotnet ef database update --context UsuarioDb
 
 ## Rodar o backend

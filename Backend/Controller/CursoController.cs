@@ -14,11 +14,11 @@ namespace BancodeDados_Backend.Controller
             this.cursoDb = cursoDb;
         }
         [HttpPost("Cadastro_Curso")]
-        private IActionResult Cadastro_Curso([FromBody] Curso curso)
+        public IActionResult Cadastro_Curso([FromBody] Curso curso)
         {
             curso.Nome = curso.Nome.ToUpper();
             var Verifica_Nome = cursoDb.Cursos.FirstOrDefault(cursoNome => cursoNome.Nome == curso.Nome);
-            if (Verifica_Nome.Nome == curso.Nome)
+            if (Verifica_Nome != null)
             {
                 return Conflict("Curso ja Cadastrado!");
             }
@@ -32,6 +32,7 @@ namespace BancodeDados_Backend.Controller
             }
 
             cursoDb.Cursos.Add(curso);
+            cursoDb.SaveChanges();
             return Created("Curso Cadastrado!", "");
         }
         [HttpPut("{Id}")]
@@ -70,6 +71,12 @@ namespace BancodeDados_Backend.Controller
             Achacurso.Ativo = false;
             cursoDb.SaveChanges();
             return NoContent();
+        }
+        [HttpGet("MostraCursos")]
+        public IActionResult MostraCursos()
+        {
+            var retornaCursos = cursoDb.Cursos.ToList();
+            return Ok(retornaCursos);
         }
     }
 }

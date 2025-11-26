@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BancoDeDados_BackEnd")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2c5e87662a17ad9a7a691a19d4b2c4bed5950a9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c925f3004d17d5ec82c659f3e49fcf7f021ca81")]
 [assembly: System.Reflection.AssemblyProductAttribute("BancoDeDados_BackEnd")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BancoDeDados_BackEnd")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

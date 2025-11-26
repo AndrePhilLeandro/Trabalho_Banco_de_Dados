@@ -1,7 +1,12 @@
-window.onload = function () {
-    var logado = JSON.parse(sessionStorage.getItem("Logado"));
-    document.getElementById("userBtn").innerText = logado.login.nome;
-};
+var logado = JSON.parse(sessionStorage.getItem("Logado"));
+if (logado.nome == "Admin") {
+    document.getElementById("userBtn").innerText = logado.nome;
+} else {
+    window.onload = function () {
+        var logado = JSON.parse(sessionStorage.getItem("Logado"));
+        document.getElementById("userBtn").innerText = logado.login.nome;
+    };
+}
 
 document.getElementById("btnSair").addEventListener("click", function () {
     sessionStorage.clear();

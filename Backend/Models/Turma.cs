@@ -12,5 +12,6 @@ namespace BancodeDados_Backend.Models
         public int Id_cursoFK { get; set; }
         public int Id_professorFK { get; set; }
         public bool Ativo { get; set; } = true;
+        public List<int> Alunos { get; set; }
     }
 }

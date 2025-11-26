@@ -4,16 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="/Frontend/scr/css/css.css">
-    <link rel="stylesheet" href="/Frontend/scr/css/Admin.css">
-    <title>Puc Check</title>
+    <link rel="stylesheet" href="/Frontend/scr/css/Cadastro.css">
 </head>
 
 <body class="bd">
-
     <header class="header">
         <img src="/Frontend/scr/images/Puc.png" class="logo" alt="Logo">
-
         <div class="user-area">
             <button id="userBtn" class="user-btn"></button>
 
@@ -25,16 +23,24 @@
         </div>
     </header>
 
-    <button><a href="/Frontend/scr/html/Cadastro.html">Cadastrar Usuario</a></button>
-    <button><a href="/Frontend/scr/html/Cadastrar_Curso.html">Cadastrar Curso</a></button>
-    <button><a href="/Frontend/scr/html/Cadastrar_Turma.html">Cadastrar Turma</a></button>
-    <button><a href="/Frontend/scr/html/Cadastrar_Discplina.html">Cadastrar Discplina</a></button>
-    <button><a href="/Frontend/scr/html/Listar_Usuarios.html">Listar Usuarios</a></button>
-    <!-- teste -->
-    <a href="/Frontend/teste.html"></a>
+    <div class="boxCadastro">
+        <form id="FormCadastroDisciplina">
 
+            <label for="Nome">Nome Discplina</label>
+            <input id="Nome" type="text">
+
+            <label for="Carga">Carga Horaria</label>
+            <input id="Carga_horaria" type="number">
+
+            <div id="cursosContainer">
+                <label>Cursos disponíveis:</label>
+                <div id="cursos"></div>
+            </div>
+            <button type="submit" class="btn salvar">Cadastrar Discplina</button>
+        </form>
+    </div>
 
 </body>
-<script src="/Frontend/scr/js/Admin.js"></script>
+<script src="/Frontend/scr/js/Discplina.js"></script>
 
 </html>

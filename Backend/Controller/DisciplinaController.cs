@@ -7,7 +7,6 @@ namespace BancodeDados_Backend.Controller
 {
     [ApiController]
     [Route("/api/[Controller]")]
-    [Authorize(Roles = "Admin")]
     public class DisciplinaController : ControllerBase
     {
         private readonly DisciplinaDb disciplinaDb;
@@ -18,10 +17,10 @@ namespace BancodeDados_Backend.Controller
             this.cursoDb = cursoDb;
         }
         [HttpPost("Cadastro_Disciplina")]
-        private IActionResult Cadastro_Disciplina(Disciplina disciplina)
+        public IActionResult Cadastro_Disciplina(Disciplina disciplina)
         {
             var achaDisci = disciplinaDb.Disciplinas.FirstOrDefault(di => di.Nome == disciplina.Nome.ToUpper());
-            if (achaDisci.Nome == disciplina.Nome)
+            if (achaDisci != null)
             {
                 return Conflict("Disciplina ja Cadastrado!");
             }
@@ -72,6 +71,12 @@ namespace BancodeDados_Backend.Controller
                 return NoContent();
             }
             return NotFound();
+        }
+        [HttpGet("MostraDiscplina")]
+        public IActionResult MostraDiscplina()
+        {
+            var retornadisciplina = disciplinaDb.Disciplinas.ToList();
+            return Ok(retornadisciplina);
         }
     }
 }

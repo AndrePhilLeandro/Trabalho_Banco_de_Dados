@@ -1,6 +1,6 @@
 window.onload = function () {
     var logado = JSON.parse(sessionStorage.getItem("Logado"));
-    document.getElementById("userBtn").innerText = logado.login.ome;
+    document.getElementById("userBtn").innerText = logado.nome;
 };
 
 document.getElementById("btnSair").addEventListener("click", function () {
@@ -45,7 +45,6 @@ function carregarUsuariosNaTela(lista) {
     tbody.innerHTML = "";
 
     lista.forEach(u => {
-
         let situacao;
         let textoBotao;
 
@@ -56,9 +55,8 @@ function carregarUsuariosNaTela(lista) {
             situacao = "Inativo";
             textoBotao = "Ativar";
         }
-
-
-        tbody.innerHTML += `
+        tbody.innerHTML +=
+            `
             <tr>
                 <td>${u.id}</td>
                 <td>${u.nome}</td>
@@ -111,3 +109,35 @@ function retornaTipo(tipo) {
 }
 
 buscarUsuarios();
+
+///////////////////// Cadastrar Curso
+document.getElementById("FormCadastroCurso").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    var nome = document.getElementById("Nome").value;
+    var carga = document.getElementById("Carga_horaria").value;
+
+    fetch("http://localhost:5074/api/Curso/Cadastro_Curso", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            Nome: nome,
+            Carga_horaria: carga,
+            Ativo: true
+        })
+    })
+        .then(async response => {
+            if (response.status === 409) {
+                alert("Cadastro já existe!");
+                return;
+            }
+
+            if (!response.ok) {
+                alert("Erro no servidor. Tente novamente.");
+                return;
+            }
+
+            alert("Cadastro Realizado com Sucesso!");
+            document.getElementById("formCadastro").reset();
+        });
+});

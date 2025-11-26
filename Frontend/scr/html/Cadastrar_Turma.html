@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Frontend/scr/css/Admin.css">
+    <link rel="stylesheet" href="/Frontend/scr/css/css.css">
+    <link rel="stylesheet" href="/Frontend/scr/css/Cadastro.css">
     <title>Puc Check</title>
 </head>
 
 <body class="bd">
 
     <header class="header">
-        <img src="" class="logo" alt="Logo">
+        <img src="/Frontend/scr/images/Puc.png" class="logo" alt="Logo">
 
         <div class="user-area">
             <button id="userBtn" class="user-btn"></button>
@@ -24,9 +25,34 @@
         </div>
     </header>
 
+    <div class="boxCadastro">
+        <form id="FormCadastroTurma">
 
+            <label for="Semestre">Semestre</label>
+            <input id="Semestre" type="number">
+
+            <label for="Ano">Ano</label>
+            <input id="Ano" type="number">
+
+            <div id="cursos">
+                <label>Cursos disponíveis:</label>
+                <div id="Id_cursoFK"></div>
+            </div>
+
+            <div id="Discplina">
+                <label>Disciplina disponíveis:</label>
+                <div id="Id_disciplinaFK"></div>
+            </div>
+
+            <div id="professores">
+                <label>Professores disponíveis:</label>
+                <div id="Id_professorFK"></div>
+            </div>
+            <button type="submit" class="btn salvar">Cadastrar Turma</button>
+        </form>
+    </div>
 
 </body>
-<script src="/Frontend/scr/js/Admin.js"></script>
+<script src="/Frontend/scr/js/Cadastrar_Turma.js"></script>
 
 </html>
