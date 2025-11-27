@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I38cIHr8SlI=",
+  "dgSpecHash": "xUxINDFPSx4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\adlr\\Downloads\\Trabalho_Banco_de_Dados-tadeu\\Trabalho_Banco_de_Dados-tadeu\\Backend\\BancoDeDados_BackEnd.csproj",
+  "projectFilePath": "C:\\Users\\adlr\\OneDrive - GFT Technologies SE\\Desktop\\Trabalho_Banco_de_Dados\\Backend\\BancoDeDados_BackEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adlr\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\adlr\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.0\\microsoft.aspnetcore.authentication.jwtbearer.9.0.0.nupkg.sha512",
